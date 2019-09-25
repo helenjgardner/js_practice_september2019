@@ -16,6 +16,12 @@ describe("capitalize", () => {
     expect(capitalize("hello")).toBe("Hello");
     expect(capitalize("the quick fox")).toBe("The quick fox");
     expect(capitalize("oh no, bears!!!")).toBe("Oh no, bears!!!");
+    // new tests added 25/9/19
+    expect(capitalize("o")).toBe("O");
+    expect(capitalize("H")).toBe("H");
+    expect(capitalize("oH HELLO")).toBe("OH HELLO");
+    expect(capitalize("OH")).toBe("OH");
+    expect(capitalize("//")).toBe("//");
   });
 
   test("does nothing if the string is already capitalized", () => {
