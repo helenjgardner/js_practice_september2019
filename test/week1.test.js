@@ -22,6 +22,9 @@ describe("capitalize", () => {
     expect(capitalize("oH HELLO")).toBe("OH HELLO");
     expect(capitalize("OH")).toBe("OH");
     expect(capitalize("//")).toBe("//");
+    expect(capitalize(" ")).toBe(" ");
+    expect(capitalize("")).toBe("");
+    expect(capitalize("TWO WORDS")).toBe("TWO WORDS");
   });
 
   test("does nothing if the string is already capitalized", () => {
@@ -32,6 +35,10 @@ describe("capitalize", () => {
 describe("generateInitials", () => {
   test("returns the initials of a firstname and surname", () => {
     expect(generateInitials("Frederic", "Bonneville")).toBe("F.B");
+    // new tests added 26/9/19
+    expect(generateInitials("F", "B")).toBe("F.B");
+    expect(generateInitials(".", ".")).toBe("...");
+    expect(generateInitials("helen jane", "gardner raeburn")).toBe("h.g");
   });
 });
 
@@ -51,6 +58,10 @@ describe("addVAT", () => {
   test("adds a VAT of 0% to a price of 25", () => {
     expect(addVAT(25, 0)).toBe(25);
   });
+  // new tests added 26/9/19
+  test("adds a VAT to a price of 0", () => {
+    expect(addVAT(0, 17.5)).toBe(0);
+  });
 });
 
 describe("getSalePrice", () => {
@@ -68,6 +79,14 @@ describe("getSalePrice", () => {
 
   test("reduces a price of 50 by 0%", () => {
     expect(getSalePrice(50, 0)).toBe(50);
+  });
+  // new tests added 26/9/19
+  test("doesnt reduce a price of 0", () => {
+    expect(getSalePrice(0, 17.5)).toBe(0);
+  });
+  
+  test("reduces a price of 39.99 by 33.33", () => {
+    expect(getSalePrice(39.99, 33.33)).toBe(26.66);
   });
 });
 
@@ -91,6 +110,10 @@ describe("reverseWord", () => {
       "?siht od ot tnaw neve uoy dluow yhw"
     );
   });
+  // new test 26/9/19
+  test("returns the provided word, reversed", () => {
+    expect(reverseWord("f")).toBe("f");
+  });
 });
 
 describe("reverseAllWords", () => {
@@ -102,6 +125,11 @@ describe("reverseAllWords", () => {
     expect(
       reverseAllWords(["jest", "mocha", "rspec", "jasmine", "selenium"])
     ).toEqual(["tsej", "ahcom", "cepsr", "enimsaj", "muineles"]);
+  });
+  test("ignores multiple single words in an array", () => {
+    expect(
+      reverseAllWords(["j", "m"])
+    ).toEqual(["j", "m"]);
   });
 });
 
@@ -134,6 +162,7 @@ describe("getMeanScore", () => {
   test("returns the mean score from an array of scores", () => {
     expect(getMeanScore([8, 9, 7])).toBe(8);
     expect(getMeanScore([88, 86, 93])).toBe(89);
+    expect(getMeanScore([0])).toBe(0);
   });
 
   test("returns the mean to 2 decimal places", () => {
@@ -157,4 +186,21 @@ describe("simpleFizzBuzz", () => {
   test("returns 'fizzbuzz' if the number is divisible by 3 and 5", () => {
     expect(simpleFizzBuzz(15)).toBe("fizzbuzz");
   });
+  // new tests 26/9/19 for negative numbers
+  test("returns 'fizz' if the number is divisible by 3", () => {
+    expect(simpleFizzBuzz(-3)).toBe("fizz");
+  });
+
+  test("returns 'buzz' if the number is divisible by 5", () => {
+    expect(simpleFizzBuzz(-5)).toBe("buzz");
+  });
+
+  test("returns the number if the number is divisible by neither 3 nor 5", () => {
+    expect(simpleFizzBuzz(-4)).toBe(-4);
+  });
+
+  test("returns 'fizzbuzz' if the number is divisible by 3 and 5", () => {
+    expect(simpleFizzBuzz(-15)).toBe("fizzbuzz")});
+  test("returns 'fizzbuzz' when passed 0", () => {
+      expect(simpleFizzBuzz(0)).toBe("fizzbuzz")});
 });
