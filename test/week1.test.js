@@ -11,7 +11,7 @@ const {
   simpleFizzBuzz
 } = require("../challenges/week1");
 
-describe("capitalize", () => {
+xdescribe("capitalize", () => {
   test("returns a capitalized string", () => {
     expect(capitalize("hello")).toBe("Hello");
     expect(capitalize("the quick fox")).toBe("The quick fox");
@@ -32,7 +32,7 @@ describe("capitalize", () => {
   });
 });
 
-describe("generateInitials", () => {
+xdescribe("generateInitials", () => {
   test("returns the initials of a firstname and surname", () => {
     expect(generateInitials("Frederic", "Bonneville")).toBe("F.B");
     // new tests added 26/9/19
@@ -42,7 +42,7 @@ describe("generateInitials", () => {
   });
 });
 
-describe("addVAT", () => {
+xdescribe("addVAT", () => {
   test("adds a VAT of 20% to a price of 100", () => {
     expect(addVAT(100, 20)).toBe(120);
   });
@@ -64,7 +64,7 @@ describe("addVAT", () => {
   });
 });
 
-describe("getSalePrice", () => {
+xdescribe("getSalePrice", () => {
   test("reduces a price of 100 by 50%", () => {
     expect(getSalePrice(100, 50)).toBe(50);
   });
@@ -90,7 +90,7 @@ describe("getSalePrice", () => {
   });
 });
 
-describe("getMiddleCharacter", () => {
+xdescribe("getMiddleCharacter", () => {
   test("returns the middle character from a string of odd length", () => {
     expect(getMiddleCharacter("bears!!!!")).toBe("s");
   });
@@ -116,7 +116,7 @@ describe("reverseWord", () => {
   });
 });
 
-describe("reverseAllWords", () => {
+xdescribe("reverseAllWords", () => {
   test("reverses a single word in an array", () => {
     expect(reverseAllWords(["jest"])).toEqual(["tsej"]);
   });
@@ -133,7 +133,7 @@ describe("reverseAllWords", () => {
   });
 });
 
-describe("countLinuxUsers", () => {
+xdescribe("countLinuxUsers", () => {
   test("returns 0 if no Linux users found", () => {
     const users = [
       { name: "Heather", OS: "Windows 8", type: "Windows" },
@@ -158,7 +158,7 @@ describe("countLinuxUsers", () => {
   });
 });
 
-describe("getMeanScore", () => {
+xdescribe("getMeanScore", () => {
   test("returns the mean score from an array of scores", () => {
     expect(getMeanScore([8, 9, 7])).toBe(8);
     expect(getMeanScore([88, 86, 93])).toBe(89);
@@ -170,7 +170,7 @@ describe("getMeanScore", () => {
   });
 });
 
-describe("simpleFizzBuzz", () => {
+xdescribe("simpleFizzBuzz", () => {
   test("returns 'fizz' if the number is divisible by 3", () => {
     expect(simpleFizzBuzz(3)).toBe("fizz");
   });
