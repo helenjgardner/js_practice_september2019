@@ -6,7 +6,7 @@ const {
   hasMPostCode
 } = require("../challenges/week2");
 
-describe.only("getFillings", () => {
+describe("getFillings", () => {
   test("returns the fillings of a sandwich", () => {
     const sandwich = {
       bread: "Sourdough",
@@ -44,7 +44,7 @@ describe("isFromManchester", () => {
   });
 });
 
-describe("getBusNumbers", () => {
+describe.only("getBusNumbers", () => {
   // A bus can hold 40 people. This function should return how many buses are required for the number of people
   test("returns 1 if all the people fit in 1 bus", () => {
     expect(getBusNumbers(1)).toBe(1);
