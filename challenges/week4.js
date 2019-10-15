@@ -1,13 +1,18 @@
 function findSmallNums(nums) {
   if (!nums) throw new Error("nums is required");
-  let newArray = [];
+  // let newArray = [];
   // for (let i = 0; i < nums.length; i++) {
   //   if (nums[i] < 1) {
   //     newArray.push(nums[i]);
   //   }
   // }
-  nums.forEach(function (item) {
-    if (item < 1) { newArray.push(item) }
+  /////////////////////////////
+  // nums.forEach(function (item) {
+  //   if (item < 1) { newArray.push(item) }
+  // })
+  //this one can be a filter
+  let newArray = nums.filter(function (item) {
+    return item < 1;
   })
 
   return newArray;
