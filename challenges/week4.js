@@ -21,76 +21,103 @@ function findSmallNums(nums) {
 function findNamesBeginningWith(names, char) {
   if (!names) throw new Error("names is required");
   if (!char) throw new Error("char is required");
-  let newArray = [];
+  // let newArray = [];
   // for (let i = 0; i < names.length; i++) {
   //   if (names[i].slice(0, 1) === char) {
   //     newArray.push(names[i]);
   //   }
   // }
-  names.forEach(function (item) {
-    if (item.slice(0, 1) === char) {
-      newArray.push(item);
-    }
+  ////////////////////////////
+  // names.forEach(function (item) {
+  //   if (item.slice(0, 1) === char) {
+  //     newArray.push(item);
+  //   }
+  // })
+  // return newArray;
+  // this can also be a filter
+  let newArray = names.filter(item => {
+    return item.slice(0, 1) === char;
   })
   return newArray;
 }
 
 function findVerbs(words) {
   if (!words) throw new Error("words is required");
-  let newArray = [];
+  // let newArray = [];
   // for (let i = 0; i < words.length; i++) {
   //   if (words[i].slice(0, 3) === 'to ') {
   //     newArray.push(words[i]);
   //   }
-  // }
-  words.forEach(function (item) {
-    if (item.slice(0, 3) === 'to ') {
-      newArray.push(item);
-    }
+  // // }
+  /////////////////////////////////
+  // words.forEach(function (item) {
+  //   if (item.slice(0, 3) === 'to ') {
+  //     newArray.push(item);
+  //   }
+  // })
+  // also a filter
+  let newArray = words.filter(item => {
+    return item.slice(0, 3) === 'to ';
   })
   return newArray;
 }
 
 function getIntegers(nums) {
   if (!nums) throw new Error("nums is required");
-  let newArray = [];
+  // let newArray = [];
   // for (let i = 0; i < nums.length; i++) {
   //   if (Number.isInteger(nums[i])) {
   //     newArray.push(nums[i]);
   //   }
   // }
-  nums.forEach(function (item) {
-    if (Number.isInteger(item)) {
-      newArray.push(item);
-    }
+  ////////////////////////////
+  // nums.forEach(function (item) {
+  //   if (Number.isInteger(item)) {
+  //     newArray.push(item);
+  //   }
+  // })
+  // also a filter
+  let newArray = nums.filter(function (n) {
+    return Number.isInteger(n);
   })
   return newArray;
 }
 
 function getCities(users) {
   if (!users) throw new Error("users is required");
-  let newArray = [];
+  //let newArray = [];
   // for (let i = 0; i < users.length; i++) {
   //   newArray.push((users[i].data.city.displayName));
   // }
-  users.forEach((n) => {
-    newArray.push(n.data.city.displayName);
+  /////////////////////////////
+  // users.forEach((n) => {
+  //   newArray.push(n.data.city.displayName);
+  // })
+  //  this one's a map
+  let newArray = users.map(n => {
+    return n.data.city.displayName
   })
   return newArray;
 }
 
 function getSquareRoots(nums) {
   if (!nums) throw new Error("nums is required");
-  let newArray = [];
+  // let newArray = [];
   // for (let i = 0; i < nums.length; i++) {
   //   let result = Math.sqrt(nums[i]);
   //   let resultDP = result.toFixed(2);
   //   newArray.push(Number(resultDP));
   // }(
-  nums.forEach((item) => {
-    let result = Math.sqrt(item);
-    let resultDP = result.toFixed(2);
-    newArray.push(Number(resultDP));
+  ///////////////////////////////
+  // nums.forEach((item) => {
+  //   let result = Math.sqrt(item);
+  //   let resultDP = result.toFixed(2);
+  //   newArray.push(Number(resultDP));
+  // })
+  //  this one's a map
+  let newArray = nums.map(n => {
+    let result = Math.sqrt(n);
+    return Number(result.toFixed(2));
   })
   return newArray;
 }
@@ -98,30 +125,40 @@ function getSquareRoots(nums) {
 function findSentencesContaining(sentences, str) {
   if (!sentences) throw new Error("sentences is required");
   if (!str) throw new Error("str is required");
-  let newArray = [];
+  // let newArray = [];
   // for (let i = 0; i < sentences.length; i++) {
   //   if (sentences[i].toLowerCase().indexOf(str.toLowerCase()) > -1) {
   //     newArray.push(sentences[i]);
   //   }
   // }
-  sentences.forEach(function (n) {
-    if (n.toLowerCase().indexOf(str.toLowerCase()) > -1) {
-      newArray.push(n);
-    }
+  //////////////////////////////
+  // sentences.forEach(function (n) {
+  //   if (n.toLowerCase().indexOf(str.toLowerCase()) > -1) {
+  //     newArray.push(n);
+  //   }
+  // })
+  //  this one's  a filter
+  let newArray = sentences.filter(function (n) {
+    return n.toLowerCase().indexOf(str.toLowerCase()) > -1;
   })
   return newArray;
 }
 
 function getLongestSides(triangles) {
   if (!triangles) throw new Error("triangles is required");
-  let newArray = [];
+  // let newArray = [];
   // for (let i = 0; i < triangles.length; i++) {
   //   let max = Math.max(...triangles[i]);
   //   newArray.push(max);
   // }
-  triangles.forEach(function (item) {
-    let max = Math.max(...item);
-    newArray.push(max);
+  ////////////////////////////
+  // triangles.forEach(function (item) {
+  //   let max = Math.max(...item);
+  //   newArray.push(max);
+  // })
+  ////// try a map
+  let newArray = triangles.map(item => {
+    return Math.max(...item);
   })
   return newArray;
 }
