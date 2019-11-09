@@ -10,7 +10,6 @@ function getSquares(nums) {
 function camelCaseWords(words) {
   if (words === undefined) throw new Error("words is required");
   let finalWord = words[0].toLowerCase();
-  // could be a forEach
   for (let i = 1; i < words.length; i++) {
     let firstLetter = words[i].slice(0, 1).toUpperCase();
     // going to make them all lower case regardless of how they started
@@ -52,7 +51,6 @@ function duplicateNumbers(arr1, arr2) {
     for (let j = 0; j < arr2.length; j++) {
       // if there is a match then
       if (arr1[i] === arr2[j]) {
-
         // if value of array 2 not in array that is building up then push      
         if (newArr.indexOf(arr2[j]) === -1) {
           newArr.push(arr1[i]);
@@ -69,7 +67,6 @@ function duplicateNumbers(arr1, arr2) {
 
   for (let k = 0; k < len; k++) {
     // get min
-    // thanks for the spread operator Nacho and Harriet
     let min = Math.min(...newArr);
     // push into new array
     sortedArr.push(min);

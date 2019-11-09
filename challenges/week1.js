@@ -14,9 +14,6 @@ function generateInitials(firstName, lastName) {
 
   // return first character of firstName concatenated with a . and then secondName
   return firstName.slice(0, 1).concat('.', lastName.slice(0, 1));
-  // previous alternative version
-  // return firstName.slice(0, 1) + '.' + lastName.slice(0, 1);
-
 }
 
 function addVAT(originalPrice, vatRate) {
@@ -24,12 +21,10 @@ function addVAT(originalPrice, vatRate) {
   if (originalPrice < 0) throw new Error("originalPrice must be positive");
   if (vatRate === undefined) throw new Error("vatRate is required");
   if (vatRate > 100 || vatRate < 0) throw new Error("vatRate must be between 0 and 100");
-  // Q: how to test error returns in jest??
 
   let result = originalPrice + (originalPrice * (vatRate / 100));
   let resultDP = result.toFixed(2);  // need 2 decimal places
   return Number(resultDP);  // convert back to number
-  // Q: not sure if toFixed is best way of doing this
 }
 
 function getSalePrice(originalPrice, reduction) {
