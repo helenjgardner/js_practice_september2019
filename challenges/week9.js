@@ -23,11 +23,11 @@ const sumMultiples = arr => {
  */
 const isValidDNA = str => {
   if (str === undefined) throw new Error("str is required");
-  if (typeof(str) !== 'string') throw new Error("str is required")
-  if (str==="") return false;
-  
-  let newStr=str.replace(/C|A|G|T/gi,'');
-  return newStr.length===0;
+  if (typeof (str) !== 'string') throw new Error("str is required")
+  if (str === "") return false;
+
+  let newStr = str.replace(/C|A|G|T/gi, '');
+  return newStr.length === 0;
 };
 
 /**
@@ -41,14 +41,15 @@ const isValidDNA = str => {
  */
 const getComplementaryDNA = str => {
   if (str === undefined) throw new Error("str is required");
-  if (typeof(str) !== 'string') throw new Error("str is required")
+  if (typeof (str) !== 'string') throw new Error("str is required")
   if (!isValidDNA(str)) throw new Error("valid sequence is required");
-  let newStr=str.replace(/A/gi,'Z');
-  newStr=newStr.replace(/T/gi,'A');
-  newStr=newStr.replace(/Z/gi,'T');
-  newStr=newStr.replace(/C/gi,'X');
-  newStr=newStr.replace(/G/gi,'C');
-  newStr=newStr.replace(/X/gi,'G');
+
+  let newStr = str.replace(/A/gi, 'Z');
+  newStr = newStr.replace(/T/gi, 'A');
+  newStr = newStr.replace(/Z/gi, 'T');
+  newStr = newStr.replace(/C/gi, 'X');
+  newStr = newStr.replace(/G/gi, 'C');
+  newStr = newStr.replace(/X/gi, 'G');
   return newStr;
 };
 
@@ -59,6 +60,16 @@ const getComplementaryDNA = str => {
  */
 const isItPrime = n => {
   if (n === undefined) throw new Error("n is required");
+  if (n <= 1) throw new Error("n must be a positive number gt 1");
+  if (typeof (n) !== 'number') throw new Error("n must be a number");
+  if (!Number.isInteger(n)) throw new Error("n must be an integer");
+  let result = true;
+  for (let i = 2; i <= Math.sqrt(n); i++) {
+    if (n % i === 0) {
+      result = false
+    }
+  }
+  return result;
 };
 
 /**
@@ -75,6 +86,18 @@ const isItPrime = n => {
 const createMatrix = (n, fill) => {
   if (n === undefined) throw new Error("n is required");
   if (fill === undefined) throw new Error("fill is required");
+  if (typeof(n) !== 'number') throw new Error ("n must be an integer greater than 0");
+  if (n<=0) throw new Error ("n must be an integer greater than 0");
+  if (!Number.isInteger(n)) throw new Error ("n must be an integer greater than 0");
+  let resultArr=[];
+  for (let i=1; i<=n; i++){
+    let innerArr=[];
+    for (let j=1; j<=n; j++){
+      innerArr.push(fill);
+    }
+    resultArr.push(innerArr);
+  }
+  return resultArr;
 };
 
 /**

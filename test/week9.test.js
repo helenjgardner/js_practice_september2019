@@ -1,6 +1,8 @@
 const {sumMultiples, 
   isValidDNA,
-  getComplementaryDNA} = require("../challenges/week9");
+  getComplementaryDNA,
+  isItPrime,
+  createMatrix} = require("../challenges/week9");
 
 describe("sumMultiples",() => {
   test("function returns an error when not passed array", () =>{
@@ -38,7 +40,7 @@ describe("sumMultiples",() => {
 });
 
 
-describe.only("isValidDNA", () =>{
+describe("isValidDNA", () =>{
   test("function throws error when no string is passed",() =>{
     expect(() => {
       isValidDNA();}).toThrow("str is required");
@@ -83,3 +85,73 @@ describe("getComplementaryDNA", ()=>{
 
   });
 });
+
+describe("isItPrime", ()=> {
+  test("returns an error if no parameter is passed", ()=>{
+    expect(()=>{
+      isItPrime()
+    }).toThrow("n is required")
+  })
+  test("returns an error if number is less than 1", ()=>{
+    expect(()=>{
+      isItPrime(-1)
+    }).toThrow("n must be a positive number gt 1")
+    expect(()=>{
+      isItPrime(0)
+    }).toThrow("n must be a positive number gt 1")
+    expect(()=>{
+      isItPrime(1)
+    }).toThrow("n must be a positive number gt 1")
+  })
+  
+  test("returns an error if parameter is not a number ", ()=>{
+    expect(()=>{
+      isItPrime("hello")
+    }).toThrow("n must be a number")
+  })
+  test("returns an error if n is not an integer", ()=>{
+    expect(() =>{
+      isItPrime(1.2)
+    }).toThrow("n must be an integer")
+  })
+  test("returns true when number is prime", ()=>{
+    expect(isItPrime(7)).toBe(true);
+    expect(isItPrime(47)).toBe(true);
+    expect(isItPrime(1217)).toBe(true);
+  });
+  test("returns false when number is not prime", () =>{
+    expect(isItPrime(9)).toBe(false);
+    expect(isItPrime(25)).toBe(false);
+    expect(isItPrime(7000)).toBe(false);
+  });
+
+});
+
+describe.only("createMatrix", ()=>{
+  test("throws an error if n is missing", ()=>{
+    expect(()=>{
+      createMatrix(undefined,'dog')}).toThrow("n is required")
+    expect(()=>{
+        createMatrix(1)}).toThrow("fill is required")
+  })
+  test("throws an error is n is not an integer ge 1", ()=>{
+    expect(()=>{
+      createMatrix(0,'dog')}).toThrow("n must be an integer greater than 0")
+    expect(()=>{
+      createMatrix(-1,'dog')}).toThrow("n must be an integer greater than 0")
+    expect(()=>{
+      createMatrix(1.3,'dog')}).toThrow("n must be an integer greater than 0")
+    })
+  test("returns an array of 1 containing dog when passed 1", ()=>{
+    const expArr=[['dog']];
+    expect(createMatrix(1,'dog')).toEqual(expArr);
+  })
+  test("returns an array containing 3 arrays with instances of foo when passed 3 and foo", ()=>{
+    const expArr=[
+         ["foo", "foo", "foo"],
+         ["foo", "foo", "foo"],
+         ["foo", "foo", "foo"]
+       ];
+    expect(createMatrix(3,"foo")).toEqual(expArr);       
+  })
+})
