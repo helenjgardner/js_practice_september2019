@@ -86,13 +86,13 @@ const isItPrime = n => {
 const createMatrix = (n, fill) => {
   if (n === undefined) throw new Error("n is required");
   if (fill === undefined) throw new Error("fill is required");
-  if (typeof(n) !== 'number') throw new Error ("n must be an integer greater than 0");
-  if (n<=0) throw new Error ("n must be an integer greater than 0");
-  if (!Number.isInteger(n)) throw new Error ("n must be an integer greater than 0");
-  let resultArr=[];
-  for (let i=1; i<=n; i++){
-    let innerArr=[];
-    for (let j=1; j<=n; j++){
+  if (typeof (n) !== 'number') throw new Error("n must be an integer greater than 0");
+  if (n <= 0) throw new Error("n must be an integer greater than 0");
+  if (!Number.isInteger(n)) throw new Error("n must be an integer greater than 0");
+  let resultArr = [];
+  for (let i = 1; i <= n; i++) {
+    let innerArr = [];
+    for (let j = 1; j <= n; j++) {
       innerArr.push(fill);
     }
     resultArr.push(innerArr);
@@ -115,6 +115,16 @@ const createMatrix = (n, fill) => {
 const areWeCovered = (staff, day) => {
   if (staff === undefined) throw new Error("staff is required");
   if (day === undefined) throw new Error("day is required");
+  if (staff.length === 0) throw new Error("staff must have a value");
+  if (typeof (day) !== 'string') throw new Error("day must be a string");
+  if (day.length === 0) throw new Error("day must be populated");
+  let count = 0;
+  staff.forEach(item => {
+    if (item.rota.indexOf(day) > -1) {
+      count += 1;
+    }
+  })
+  return count >= 3;
 };
 
 module.exports = {
