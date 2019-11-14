@@ -23,18 +23,33 @@ const sumMultiples = arr => {
  */
 const isValidDNA = str => {
   if (str === undefined) throw new Error("str is required");
+  if (typeof(str) !== 'string') throw new Error("str is required")
   if (str==="") return false;
+  
   let newStr=str.replace(/C|A|G|T/gi,'');
   return newStr.length===0;
 };
 
 /**
  * This function will receive a valid DNA string (see above) and should return a string of the complementary base pairs. In DNA, T always pairs with A, and C always pairs with G. So a string of "ACTG" would have a complementary DNA string of "TGAC".
+ * A-> T
+ * C -> G
+ * T -> A
+ * G -> C
  * @param {String} str
  * @returns {String}
  */
 const getComplementaryDNA = str => {
   if (str === undefined) throw new Error("str is required");
+  if (typeof(str) !== 'string') throw new Error("str is required")
+  if (!isValidDNA(str)) throw new Error("valid sequence is required");
+  let newStr=str.replace(/A/gi,'Z');
+  newStr=newStr.replace(/T/gi,'A');
+  newStr=newStr.replace(/Z/gi,'T');
+  newStr=newStr.replace(/C/gi,'X');
+  newStr=newStr.replace(/G/gi,'C');
+  newStr=newStr.replace(/X/gi,'G');
+  return newStr;
 };
 
 /**

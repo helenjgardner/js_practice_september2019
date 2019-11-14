@@ -1,5 +1,6 @@
 const {sumMultiples, 
-  isValidDNA} = require("../challenges/week9");
+  isValidDNA,
+  getComplementaryDNA} = require("../challenges/week9");
 
 describe("sumMultiples",() => {
   test("function returns an error when not passed array", () =>{
@@ -42,6 +43,10 @@ describe.only("isValidDNA", () =>{
     expect(() => {
       isValidDNA();}).toThrow("str is required");
   });
+  test("function throws an error when a non string is passed", ()=>{
+    expect(()=>{
+      isValidDNA(3);}).toThrow("str is required");
+  })
   test("function returns false when string is empty",() => {
     expect(isValidDNA("")).toBe(false);
   });
@@ -57,4 +62,24 @@ describe.only("isValidDNA", () =>{
      expect(isValidDNA("hnq")).toBe(false);
   });
 
+});
+
+describe("getComplementaryDNA", ()=>{
+  test("function throws an error when no str is passed ", ()=>{
+    expect(()=>{
+      getComplementaryDNA()}).toThrow("str is required");
+    expect(()=>{
+        getComplementaryDNA(4)}).toThrow("str is required");
+  });
+  test("function throws an error when invalid DNA sequence passsed", ()=>{
+    expect(()=>{
+      getComplementaryDNA('JN')}).toThrow("valid sequence is required");
+      
+  });
+  test("function returns correct result", ()=>{
+    expect(getComplementaryDNA("ACTG")).toBe("TGAC");
+    expect(getComplementaryDNA("AAAACCCCGGGGTTTT")).toBe("TTTTGGGGCCCCAAAA");
+    expect(getComplementaryDNA("ACTGACTG")).toBe("TGACTGAC");
+
+  });
 });
