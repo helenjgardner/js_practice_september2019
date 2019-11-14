@@ -1,4 +1,5 @@
-const {sumMultiples} = require("../challenges/week9");
+const {sumMultiples, 
+  isValidDNA} = require("../challenges/week9");
 
 describe("sumMultiples",() => {
   test("function returns an error when not passed array", () =>{
@@ -33,4 +34,27 @@ describe("sumMultiples",() => {
   test("function deals with negative numbers", () =>{
      expect(sumMultiples([-3,-5])).toBe(-8);
   });
+});
+
+
+describe.only("isValidDNA", () =>{
+  test("function throws error when no string is passed",() =>{
+    expect(() => {
+      isValidDNA();}).toThrow("str is required");
+  });
+  test("function returns false when string is empty",() => {
+    expect(isValidDNA("")).toBe(false);
+  });
+  test("function returns true when string only contains C G T A", ()=>{
+      expect(isValidDNA("CGA")).toBe(true);
+      expect(isValidDNA("CCGGAATTCCAAGGTT")).toBe(true);
+  });
+  test("function returns false when string doesn't contain just C G A T",()=>{
+     expect(isValidDNA("BYH")).toBe(false);
+  });
+  test("function ignores case", () =>{
+     expect(isValidDNA("cgattagc")).toBe(true);
+     expect(isValidDNA("hnq")).toBe(false);
+  });
+
 });

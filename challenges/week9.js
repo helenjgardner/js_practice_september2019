@@ -23,6 +23,9 @@ const sumMultiples = arr => {
  */
 const isValidDNA = str => {
   if (str === undefined) throw new Error("str is required");
+  if (str==="") return false;
+  let newStr=str.replace(/C|A|G|T/gi,'');
+  return newStr.length===0;
 };
 
 /**
