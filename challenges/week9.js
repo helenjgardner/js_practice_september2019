@@ -5,13 +5,13 @@
  * @returns {Number}
  */
 const sumMultiples = arr => {
-  if (arr === undefined) throw new Error("arr is required");
-  let grandSum=0;
+  if (arr === undefined) throw new Error("array is required");
+  if (!Array.isArray(arr)) throw new Error("array is required");
+  let grandSum = 0;
   arr.forEach(item => {
-    if (item%3 === 0 || item%5 ===0 ){
-      grandSum=grandSum+item;
+    if (item % 3 === 0 || item % 5 === 0) {
+      grandSum += item;
     }
-    
   })
   return grandSum;
 };
