@@ -4,9 +4,9 @@
  */
 const sumDigits = n => {
   if (n === undefined) throw new Error("n is required");
-  if (typeof(n) != 'number') throw new Error("n must be a number");
-  if (n<0) throw new Error("n must be positive");
-  if (n>=0 && n<10) return n;
+  if (typeof (n) != 'number') throw new Error("n must be a number");
+  if (n < 0) throw new Error("n must be positive");
+  if (n >= 0 && n < 10) return n;
   const reducer = (accumulator, currentValue) => Number(accumulator) + Number(currentValue);
   return n.toString().split('').reduce(reducer);
 };
@@ -19,17 +19,17 @@ const sumDigits = n => {
  * @param {Number} end
  * @param {Number} step
  */
-const createRange = (start, end, step=1) => {
+const createRange = (start, end, step = 1) => {
   if (start === undefined) throw new Error("start is required");
   if (end === undefined) throw new Error("end is required");
-  if (typeof(start) != 'number') throw new Error("start must be a number");
-  if (typeof(end) !='number') throw new Error("end must be a number");
-  if (typeof(step) != 'number') throw new Error("step must be a number");
-  if (step < 1 ) throw new Error("step must be a positive number");
+  if (typeof (start) != 'number') throw new Error("start must be a number");
+  if (typeof (end) != 'number') throw new Error("end must be a number");
+  if (typeof (step) != 'number') throw new Error("step must be a number");
+  if (step < 1) throw new Error("step must be a positive number");
   if (end < start) throw new Error("start must be less than end");
-  let myArray=[];
-  for (let i=start; i<=end; i+=step){
-   myArray.push(i);
+  let myArray = [];
+  for (let i = start; i <= end; i += step) {
+    myArray.push(i);
   }
   return myArray;
 };
@@ -66,6 +66,22 @@ const createRange = (start, end, step=1) => {
 const getScreentimeAlertList = (users, date) => {
   if (users === undefined) throw new Error("users is required");
   if (date === undefined) throw new Error("date is required");
+  if (!Array.isArray(users) || users.length === 0) throw new Error("users must be an array");
+  let resultArr = [];
+  users.forEach((item) => {
+    let total = 0;
+    item.screenTime.forEach(subItem => {
+      if (subItem.date === date) {
+        for (let key in subItem.usage) {
+          total += subItem.usage[key];
+        }
+        if (total > 100) {
+          resultArr.push(item.username);
+        }
+      }
+    })
+  })
+  return resultArr;
 };
 
 /**
@@ -80,6 +96,12 @@ const getScreentimeAlertList = (users, date) => {
  */
 const hexToRGB = hexStr => {
   if (hexStr === undefined) throw new Error("hexStr is required");
+  if (hexStr.slice(0, 1) != '#') throw new Error("first character must be #");
+  const rVal = parseInt(hexStr.slice(1, 3), 16);
+  const gVal = parseInt(hexStr.slice(3, 5), 16);
+  const bVal = parseInt(hexStr.slice(5), 16);
+
+  return "rgb(" + rVal + "," + gVal + "," + bVal + ")";
 };
 
 /**
@@ -94,6 +116,74 @@ const hexToRGB = hexStr => {
  */
 const findWinner = board => {
   if (board === undefined) throw new Error("board is required");
+  if (board.length === 0) throw new Error("board needs to be populated");
+  if (board.length < 3) throw new Error("board needs to be 3x3");
+
+  // function that checks 3 elements of an array
+  // match each other
+  // takes obj
+  // returns first element
+
+  const examine = (pos) => {
+    if (board[pos.one_r][pos.one_c] === board[pos.two_r][pos.two_c]
+      && board[pos.one_r][pos.one_c] === board[pos.three_r][pos.three_c]) return board[pos.one_r][pos.one_c];
+  }
+  // check first row and if no match subsequent rows
+  let row = 0;
+  let rowCoord = {
+    one_r: row, one_c: 0, two_r: row, two_c: 1,
+    three_r: row, three_c: 2
+  };
+  if (examine(rowCoord)) return examine(rowCoord);
+  else {
+    row = 1;
+    rowCoord = {
+      one_r: row, one_c: 0, two_r: row, two_c: 1,
+      three_r: row, three_c: 2
+    };
+    if (examine(rowCoord)) return examine(rowCoord);
+    else {
+      row = 2;
+      rowCoord = { one_r: row, one_c: 0, two_r: row, two_c: 1, three_r: row, three_c: 2 };
+      if (examine(rowCoord)) return examine(rowCoord);
+    }
+  }
+  // now check cols
+  let col = 0;
+  let colCoord = {
+    one_r: 0, one_c: col, two_r: 1, two_c: col,
+    three_r: 2, three_c: col
+  };
+  if (examine(colCoord)) return examine(colCoord); else {
+    col = 1;
+    colCoord = {
+      one_r: 0, one_c: col, two_r: 1, two_c: col,
+      three_r: 2, three_c: col
+    };
+    if (examine(colCoord)) return examine(colCoord); else {
+      col = 2;
+      colCoord = {
+        one_r: 0, one_c: col, two_r: 1, two_c: col,
+        three_r: 2, three_c: col
+      };
+      if (examine(colCoord)) return examine(colCoord);
+    }
+  }
+
+  // now check diagonals
+  let coord = {
+    one_r: 0, one_c: 0, two_r: 1, two_c: 1,
+    three_r: 2, three_c: 2
+  };
+  if (examine(coord)) return examine(coord);
+  else {
+    coord = {
+      one_r: 2, one_c: 0, two_r: 1, two_c: 1,
+      three_r: 0, three_c: 2
+    };
+    if (examine(coord)) return examine(coord);
+    else return null;
+  }
 };
 
 module.exports = {
