@@ -1,6 +1,8 @@
 # JavaScript Practice
 
 This repository contains a number of problems solved using JavaScript over a period of weeks.
+Note that the last 2 weeks required user to build the full test suite from scratch.
+Also note that there were no exercises provided for weeks 5-7.
 
 All functions have been developed with full TDD using the [Jest](https://jestjs.io) testing library.
 

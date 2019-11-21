@@ -151,7 +151,7 @@ describe("hexToRGB", () => {
     })
 });
 
-describe.only("findWinner", () => {
+describe("findWinner", () => {
     test("findWinner throws an error if board is not passed", () => {
         expect(() => {
             findWinner()

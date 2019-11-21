@@ -124,6 +124,8 @@ describe("isItPrime", () => {
     expect(isItPrime(7)).toBe(true);
     expect(isItPrime(47)).toBe(true);
     expect(isItPrime(1217)).toBe(true);
+    expect(isItPrime(2)).toBe(true);
+    expect(isItPrime(3)).toBe(true);
   });
   test("returns false when number is not prime", () => {
     expect(isItPrime(9)).toBe(false);
